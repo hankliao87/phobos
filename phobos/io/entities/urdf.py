@@ -21,6 +21,7 @@ import phobos.model.materials as matModel
 import phobos.utils.general as gUtils
 import phobos.utils.io as ioUtils
 from phobos.phoboslog import log
+import math
 
 
 def sort_urdf_elements(elems):
@@ -699,6 +700,7 @@ def parseLink(link, urdffilepath):
             elementdict = {a: xmlelement.attrib[a] for a in xmlelement.attrib}
             elementdict['name'] = elementname
             elementdict['pose'] = parsePose(xmlelement.find('origin'))
+            elementdict['pose']['rotation_euler'] = [elem+math.radians(-90) if idx==0 else elem for idx, elem in enumerate(elementdict['pose']['rotation_euler'])]
 
             # gather material
             material = xmlelement.find('material')
