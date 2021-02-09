@@ -1459,6 +1459,23 @@ class PhobosDisplayPanel(bpy.types.Panel):
             dc2.prop(wm, 'phobos_msg_count')
             dc2.prop(wm, 'phobos_msg_offset')
 
+classes = (
+    ModelPoseProp,
+    PhobosPrefs,
+    PhobosExportSettings,
+    MatrixPropGroup,
+    PhobosMatrixPanel,
+    PhobosObjectInformationPanel,
+    PhobosPropertyInformationPanel,
+    PhobosModelWarningsPanel,
+    PhobosToolsPanel,
+    PhobosDisplayPanel,
+    PhobosModelPanel,
+    PhobosSubmodelsPanel,
+    PhobosExportPanel,
+    PhobosImportPanel,
+)
+
 
 def register():
     """TODO Missing documentation"""
@@ -1630,8 +1647,10 @@ def unregister():
     prev_collections.clear()
 
     # Unregister classes
-    for key, classdef in inspect.getmembers(sys.modules[__name__], inspect.isclass):
+    for classdef in classes:
         bpy.utils.unregister_class(classdef)
+    # for key, classdef in inspect.getmembers(sys.modules[__name__], inspect.isclass):
+    #     bpy.utils.unregister_class(classdef)
 
     # Remove manuals from buttons
     bpy.utils.unregister_manual_map(get_operator_manuals)

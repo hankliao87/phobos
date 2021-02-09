@@ -163,4 +163,4 @@ def unregister():
     print("Unregistering Phobos...")
     # TODO delete all imported modules to resolve reregistration conflicts
     phobos.phobosgui.unregister()
-    bpy.utils.unregister_module(__name__)
+    # bpy.utils.unregister_module(__name__)
